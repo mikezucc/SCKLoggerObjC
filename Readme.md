@@ -12,7 +12,7 @@
      \__\/         \__\/         \__\/                       \__\/         \__\/
 ```
 
-# SCKLog Server
+# SCKLog Client
 Quickstart remote debugging code. Helps when you are unable to attach your XCode console to a process.
 
 [SCKLog server](https://github.com/mikezucc/SCKLogServer)
