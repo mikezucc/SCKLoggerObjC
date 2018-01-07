@@ -1,5 +1,4 @@
-//
-/*
+```
       ___           ___           ___                         ___           ___
      /  /\         /  /\         /__/|                       /  /\         /  /\
     /  /:/_       /  /:/        |  |:|                      /  /::\       /  /:/_
@@ -11,19 +10,30 @@
    \__\/ /:/     \  \:\/:/     \  \:\         \  \::/      \  \:\/:/     \  \:\/:/
      /__/:/       \  \::/       \  \:\         \__\/        \  \::/       \  \::/
      \__\/         \__\/         \__\/                       \__\/         \__\/
-*/
+```
 
-#import <Foundation/Foundation.h>
+# SCKLog Client
+Quickstart remote debugging code. Helps when you are unable to attach your XCode console to a process.
 
-@interface SCKLogger: NSObject
-+ (SCKLogger *)shared;
-- (void)writeLog:(NSString *)log;
-@property (strong, nonatomic) NSString *session;
-@end
+[SCKLog server](https://github.com/mikezucc/SCKLogServer)
 
-#ifndef SCKLog_h
-#define SCKLog_h
+Client breakdown:
+1. POST to `/start` with the appropriate session stamp to start a new log file with that <sessionstamp>-log.txt
+2. POST to `/log` and watch them print on `/watch` web page. They will also show in the text file browsable through static root `http://localhost:3003/`.
 
-void SCKLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+## observe
+`/` => shows directory through Ecstatic static file server
 
-#endif /* SCKLog_h */
+`/watch`, active session web page
+
+## api
+path `/start` 
+
+    body:{"session":<string>}
+    method:`POST`
+     
+
+path `/log`
+
+    body:{"payload":<string>}
+    method:`POST`
